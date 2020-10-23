@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="row">
+    <div class="row row-form">
         <div class="col-3"></div>
         <form action="" class="col-6" method="post">
             <div class="form-group">
@@ -14,7 +14,20 @@
                 <label for="content">Contenu</label>
                 <input type="text" class="form-control" name="content">
             </div>
-            <button class="btn btn-success" type="submit">Publier</button>
+            <button class="btn btn-success" type="submit" name="publish">Publier</button>
         </form>
     </div>
+    <?php
+    if($newsIsPublished)
+    {
+        ?>
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <?= $newsIsPublished ?>
+            </div>
+            <div class="col-3"></div>
+        </div>
+        <?php
+    } ?>
 </div>
