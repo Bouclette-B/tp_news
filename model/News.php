@@ -2,11 +2,12 @@
 namespace App\model;
 class News
 {
+    private $_id;
     private $_author;
     private $_title;
     private $_content;
     private $_creationDate;
-    private $_updateDate;
+    private $_updateDate = null;
 
     public function __construct(array $data)
     {
@@ -23,6 +24,10 @@ class News
                 $this->$method($value);
             }
         }
+    }
+
+    public function getId(){
+        return $this->_id;
     }
 
     public function getAuthor()
@@ -50,6 +55,13 @@ class News
         return $this->_updateDate;
     }
 
+    public function setId($id)
+    {
+        if(is_int($id))
+        {
+            $this->_id = $id;
+        }
+    }
     public function setAuthor($author)
     {
         if(is_string($author))
