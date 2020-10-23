@@ -1,2 +1,9 @@
-<h2>Écrivez ou modifiez une news</h2>
-<p><?= $test ?>
+<div class="container">
+    <div class="row row-title">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <h2>Les news</h2>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>
