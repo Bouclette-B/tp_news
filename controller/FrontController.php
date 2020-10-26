@@ -5,19 +5,22 @@ use App\model\DBFactory;
 use App\model\News;
 class FrontController extends Backcontroller
 {
+
     public function home()
     {
-        $test = 'PROUT';
+        $db = DBFactory::getMysqlConnectionWithPDO();
+        $newsManagerPDO = new NewsManagerPDO($db);
+        $newsList = $newsManagerPDO->getNews();
+        // $newsManagerPDO->getNewsExcerptFromNewsList($newsList);
         $viewData = [
-            'test' => $test,
+            'newsList' => $newsList,
         ];
         $this->render('homeView', $viewData);
     }
 
     public function newsAdmin()
     {
-        $DBFactory = new DBFactory;
-        $db = $DBFactory->getMysqlConnectionWithPDO();
+        $db = DBFactory::getMysqlConnectionWithPDO();
         $newsManagerPDO = new NewsManagerPDO($db);
         $author = $this->isPost('author');
         $title = $this->isPost('title');
@@ -26,7 +29,7 @@ class FrontController extends Backcontroller
         if($author && $title && $content){
             $author = htmlspecialchars($author);
             $title = htmlspecialchars($title);
-            $content = htmlspecialchars($content);
+            $content = nl2br(htmlspecialchars($content));
             $news = new News([
                 'author' => $author,
                 'title' => $title,

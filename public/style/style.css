@@ -1,3 +1,16 @@
-h2 {
+div.row-title h2 {
     text-align: center;
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+div.row-news .col-6 {
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    padding-top: 5px;
+}
+
+div.navbar-collapse {
+    justify-content: flex-end;
 }

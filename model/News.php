@@ -1,5 +1,9 @@
 <?php
+
 namespace App\model;
+
+use \DateTime;
+
 class News
 {
     private $_id;
@@ -9,6 +13,7 @@ class News
     private $_creationDate;
     private $_updateDate = null;
 
+
     public function __construct(array $data)
     {
         $this->hydrate($data);
@@ -16,17 +21,16 @@ class News
 
     public function hydrate(array $data)
     {
-        foreach($data as $key => $value)
-        {
+        foreach ($data as $key => $value) {
             $method = 'set' . ucfirst($key);
-            if(method_exists($this, $method))
-            {
+            if (method_exists($this, $method)) {
                 $this->$method($value);
             }
         }
     }
 
-    public function getId(){
+    public function getId()
+    {
         return $this->_id;
     }
 
@@ -57,39 +61,34 @@ class News
 
     public function setId($id)
     {
-        if(is_int($id))
-        {
+        if (is_int($id)) {
             $this->_id = $id;
         }
     }
     public function setAuthor($author)
     {
-        if(is_string($author))
-        {
+        if (is_string($author)) {
             $this->_author = $author;
         }
     }
 
     public function setTitle($title)
     {
-        if(is_int($title))
-        {
+        if (is_string($title)) {
             $this->_title = $title;
         }
     }
 
     public function setContent($content)
     {
-        if(is_int($content))
-        {
+        if (is_string($content)) {
             $this->_content = $content;
         }
     }
 
     public function setCreationDAte()
     {
-        if(!$this->_creationDate)
-        {
+        if (!$this->_creationDate) {
             $date = new DateTime;
             $this->_creationDate = $date->format('d/m/Y');
         }
@@ -97,10 +96,10 @@ class News
 
     public function setUpdateDate()
     {
-        if($this->_creationDate)
-        {
+        if ($this->_creationDate) {
             $date = new DateTime;
             $this->_updateDate = $date->format('d/m/Y');
         }
     }
+
 }
