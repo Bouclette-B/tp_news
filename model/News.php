@@ -13,10 +13,11 @@ class News
     private $_creationDate;
     private $_updateDate = null;
 
-
-    public function __construct(array $data)
+    public function __construct(?array $data = null)
     {
-        $this->hydrate($data);
+        if(!empty($data)){
+            $this->hydrate($data);
+        }
     }
 
     public function hydrate(array $data)
@@ -26,6 +27,14 @@ class News
             if (method_exists($this, $method)) {
                 $this->$method($value);
             }
+        }
+    }
+
+    public function __set($attribut, $value)
+    {
+        $attribut = "_$attribut";
+        if($attribut){
+            $this->$attribut = $value;
         }
     }
 
@@ -86,20 +95,27 @@ class News
         }
     }
 
-    public function setCreationDAte()
+    public function setCreationDAte(DateTime $creationDate)
     {
-        if (!$this->_creationDate) {
-            $date = new DateTime;
-            $this->_creationDate = $date->format('d/m/Y');
-        }
+            $this->_creationDate = $creationDate;
     }
 
-    public function setUpdateDate()
+    public function setUpdateDate(DateTime $updateDate)
     {
-        if ($this->_creationDate) {
-            $date = new DateTime;
-            $this->_updateDate = $date->format('d/m/Y');
-        }
+            $this->_updateDate = $updateDate;
     }
+
+    public function getExcerpt(){
+        if(strlen(strip_tags($this->getContent())) > 199)
+        {
+            $excerpt = substr($this->getContent(), 0, 199);
+            $excerpt = substr($excerpt, 0, strrpos($excerpt, ' ')). ' ...';
+        }else
+        {
+            $excerpt =  $this->getContent();
+        }
+        return nl2br($excerpt);
+    }
+
 
 }

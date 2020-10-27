@@ -12,6 +12,12 @@ try
         case 'newsAdmin' : 
             $frontController->newsAdmin();
             break;
+        case 'newsView' :
+            $frontController->newsView();
+            break;
+        case 'deleteNewsView' :
+            $frontController->deleteNewsView();
+            break;
         default :
         $frontController->home();
     }

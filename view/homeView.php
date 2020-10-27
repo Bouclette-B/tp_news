@@ -10,10 +10,10 @@
                 <div class="row row-news">
                     <div class="col-3"></div>
                     <div class="col-6">
-                        <h3><?= $news['title'] ?></h3>
-                        <p><em>Écrit par <strong><?= $news['author'] ?></strong>, le <?= $news['creationDate'] ?></em></p>
-                        <p><?= substr($news['content'], 0, 199) ?>...<p>
-                        <a href="#"><em>Lire la suite</em></a>
+                        <h3><?= $news->getTitle() ?></h3>
+                        <?php include('./include/newsInfo.php') ?>
+                        <p><?= $news->getExcerpt()?>
+                        <a href="index.php?action=newsView&id=<?= $news->getId() ?>"><em>Lire la suite</em></a>
                     </div>
                     <div class="col-3"></div>
                 </div>
